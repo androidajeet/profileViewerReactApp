@@ -19,23 +19,8 @@ class App extends Component {
 
 
   componentDidMount() {
-    getProfiledata('https://api.github.com/users/' + this.state.username + '?client_id=' + this.props.clientId + '&client_secret=' + this.props.clientSecret).then(response => {
-      console.log("from outside", response.data);
-      this.setState({ userData: response.data });
-    }).catch(response => {
-      console.log(response);
-    });
-
-
-    getReposatoriesData(
-      'https://api.github.com/users/' + this.state.username + '/repos?per_page=' + this.state.perPage + '&client_id=' + this.props.clientId + '&client_secret=' + this.props.clientSecret
-      + '&sort=created').then(response => {
-        console.log("repo data", response.data);
-        this.setState({ userRepos: response.data });
-      }).catch(response => {
-        console.log(response);
-      });
-
+    this.fetchProfileDataFromApi();
+    this.fetchRepoFromApi()
   }
 
 
@@ -43,10 +28,29 @@ class App extends Component {
     return (
       <div >
         <Layout>
-          <Profile userData={this.state.userData}></Profile>
+          <Profile {...this.state} ></Profile>
         </Layout>
       </div>
     );
+  }
+
+
+
+  fetchProfileDataFromApi() {
+    getProfiledata('https://api.github.com/users/' + this.state.username + '?client_id=' + this.props.clientId + '&client_secret=' + this.props.clientSecret).then(response => {
+      this.setState({ userData: response.data });
+    }).catch(response => {
+    });
+  }
+
+  fetchRepoFromApi() {
+    getReposatoriesData(
+      'https://api.github.com/users/' + this.state.username + '/repos?per_page=' + this.state.perPage + '&client_id=' + this.props.clientId + '&client_secret=' + this.props.clientSecret
+      + '&sort=created').then(response => {
+        console.log("fetchRepoFromApi()", response.data);
+        this.setState({ userRepos: response.data });
+      }).catch(response => {
+      });
   }
 }
 

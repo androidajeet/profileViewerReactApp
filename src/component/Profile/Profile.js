@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import RepoList from '../RepoList/RepoList';
 
 
 class Profile extends Component {
@@ -39,6 +40,12 @@ class Profile extends Component {
                         </div>
                     </div>
                 </div>
+
+                <hr />
+
+                <h3 className="text-center">User Reposatories</h3>
+
+                <RepoList userRepos={this.props.userRepos}> </RepoList>
             </div>
         );
     }
