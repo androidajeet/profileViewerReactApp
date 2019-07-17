@@ -15,13 +15,13 @@ class Profile extends Component {
                     <div className="col-md-8">
                         <div className="card-body">
                             <h4 className="card-title"><b>{this.props.userData.name}</b></h4>
-                            <h6 className="card-title">@{this.props.userData.login}</h6>
+                            <h6 className="text-muted">@{this.props.userData.login}</h6>
                             <div className="row">
                                 <div className="col-md-12">
-                                    <span className="label label-primary"><b>Repos </b>{this.props.userData.public_repos}</span>
-                                    <span className="label label-success"><b>  Public Gists </b>{this.props.userData.public_gists}</span>
-                                    <span className="label label-info"><b>  Followers </b>{this.props.userData.followers}</span>
-                                    <span className="label label-danger"><b>  Following </b>{this.props.userData.following}</span>
+                                    <b>Repos</b> <span className="badge  badge-success">{this.props.userData.public_repos}</span>
+                                    <b>       Public Gists</b> <span className="badge  badge-danger">{this.props.userData.public_gists}</span>
+                                    <b>       Followers</b> <span className="badge badge-warning">{this.props.userData.followers}</span>
+                                    <b>       Following</b> <span className="badge badge-info">{this.props.userData.following}</span>
                                 </div>
                             </div>
                             <p className="card-text"><q>{this.props.userData.bio}</q></p>

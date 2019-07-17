@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import Layout from './component/Layout/Layout';
 import PropTypes from 'prop-types';
 import Profile from './component/Profile/Profile';
-import { getProfileData } from './helper/profileHelper';
-
+import { getProfiledata } from './helper/profileHelper';
 
 class App extends Component {
 
@@ -19,13 +18,13 @@ class App extends Component {
 
 
   componentDidMount() {
-    getProfileData('https://api.github.com/users/' + this.state.username + '?client_id=' + this.props.clientId + '&client_secret=' + this.props.clientSecret).then(res => {
-      console.log(res);
-      this.setState({ userData: res.data })
-    })
-      .catch(error => {
-        console.log(error)
-      });
+    getProfiledata('https://api.github.com/users/' + this.state.username + '?client_id=' + this.props.clientId + '&client_secret=' + this.props.clientSecret).then(response => {
+      console.log("from outside", response.data);
+      this.setState({ userData: response.data });
+    }).catch(response => {
+      console.log(response);
+    });
+
 
   }
 
@@ -55,3 +54,11 @@ export default App;
 //brije111
 //amdroidajeet
 //deeksha080502
+
+
+  // getApiData('https://api.github.com/users/' + this.state.username + '?client_id=' + this.props.clientId + '&client_secret=' + this.props.clientSecret).then(res => {
+    //   console.log("from normal", res);
+    //   this.setState({ userData: res.data });
+    // }).catch(error => {
+    //   console.log(error)
+    // });

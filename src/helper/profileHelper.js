@@ -1,7 +1,6 @@
-import axios from 'axios';
+import { getApiData } from '../helper/axiosHelper';
 
-export const getProfileData = (url) => {
-    const instance = axios.get(url)
-    return instance;
 
+export function getProfiledata(url) {
+    return getApiData(url);
 }
