@@ -3,6 +3,7 @@ import Layout from './component/Layout/Layout';
 import PropTypes from 'prop-types';
 import Profile from './component/Profile/Profile';
 import { getProfiledata } from './helper/profileHelper';
+import { getReposatoriesData } from './helper/repoHelper';
 
 class App extends Component {
 
@@ -25,6 +26,15 @@ class App extends Component {
       console.log(response);
     });
 
+
+    getReposatoriesData(
+      'https://api.github.com/users/' + this.state.username + '/repos?per_page=' + this.state.perPage + '&client_id=' + this.props.clientId + '&client_secret=' + this.props.clientSecret
+      + '&sort=created').then(response => {
+        console.log("repo data", response.data);
+        this.setState({ userRepos: response.data });
+      }).catch(response => {
+        console.log(response);
+      });
 
   }
 
