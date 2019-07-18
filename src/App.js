@@ -10,7 +10,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: 'brije111',
+      username: 'androidajeet',
       userData: [],
       userRepos: [],
       perPage: 5
@@ -76,13 +76,8 @@ App.defaultProps = {
 export default App;
 
 //brije111
-//amdroidajeet
+//androidajeet
 //deeksha080502
 
 
-  // getApiData('https://api.github.com/users/' + this.state.username + '?client_id=' + this.props.clientId + '&client_secret=' + this.props.clientSecret).then(res => {
-    //   console.log("from normal", res);
-    //   this.setState({ userData: res.data });
-    // }).catch(error => {
-    //   console.log(error)
-    // });
+

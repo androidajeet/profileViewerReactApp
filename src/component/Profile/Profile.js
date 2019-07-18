@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import RepoList from '../RepoList/RepoList';
-import Search from '../Search/Search';
 
 
 class Profile extends Component {

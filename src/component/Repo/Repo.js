@@ -6,7 +6,7 @@ class Repo extends Component {
         const { repo } = this.props;
         return (
             <div >
-                <a rel="noopener noreferrer" target="_blank" href={repo.html_url} className="list-group-item list-group-item-action">
+                <a rel="noopener noreferrer" href={repo.html_url} className="list-group-item list-group-item-action">
                     <div className="d-flex w-100 justify-content-between">
                         <h5 className="mb-5">{repo.name}</h5>
                         <small className="text-muted">Created at {repo.created_at}</small>
