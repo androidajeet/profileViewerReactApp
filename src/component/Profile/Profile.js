@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import RepoList from '../RepoList/RepoList';
+import Search from '../Search/Search';
 
 
 class Profile extends Component {
@@ -12,7 +13,6 @@ class Profile extends Component {
                     <div className="col-md-4">
                         <img src={this.props.userData.avatar_url} className="card-img" alt="avtar" />
                     </div>
-
                     <div className="col-md-8">
                         <div className="card-body">
                             <h4 className="card-title"><b>{this.props.userData.name}</b></h4>
@@ -36,15 +36,11 @@ class Profile extends Component {
                                 </div>
                             </div>
                             <p className="card-text"><small className="text-muted">Last updated {this.props.userData.updated_at}</small></p>
-                            <a className="btn btn-primary" target="_blank" href={this.props.userData.html_url}>Visit Profile</a>
+                            <a className="btn btn-primary" href={this.props.userData.html_url}>Visit Profile</a>
                         </div>
                     </div>
                 </div>
-
-                <hr />
-
                 <h3 className="text-center">User Reposatories</h3>
-
                 <RepoList userRepos={this.props.userRepos}> </RepoList>
             </div>
         );
@@ -53,3 +49,5 @@ class Profile extends Component {
 }
 
 export default Profile
+
+//<Search />

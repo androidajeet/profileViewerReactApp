@@ -11,9 +11,10 @@ class Layout extends Component {
 
 
     render() {
+        //  console.log("in Layout", this.props.onFormSubmit);
         return (
             <Aux>
-                <Toolbar />
+                <Toolbar {...this.props} />
                 <main>
                     {this.props.children}
                 </main>

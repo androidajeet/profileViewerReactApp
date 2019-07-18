@@ -10,7 +10,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: 'androidajeet',
+      username: 'brije111',
       userData: [],
       userRepos: [],
       perPage: 5
@@ -27,8 +27,8 @@ class App extends Component {
   render() {
     return (
       <div >
-        <Layout>
-          <Profile {...this.state} ></Profile>
+        <Layout onFormSubmit={this.handleFormSubmit.bind(this)}>
+          <Profile {...this.state} />
         </Layout>
       </div>
     );
@@ -52,6 +52,16 @@ class App extends Component {
       }).catch(response => {
       });
   }
+
+
+  handleFormSubmit(username) {
+    console.log(username);
+    this.setState({ username: username }, function () {
+      this.fetchProfileDataFromApi();
+      this.fetchRepoFromApi()
+    });
+  }
+
 }
 
 App.propTypes = {
