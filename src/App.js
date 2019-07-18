@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Profile from './component/Profile/Profile';
 import { getProfiledata } from './helper/profileHelper';
 import { getReposatoriesData } from './helper/repoHelper';
+import Spinner from './component/Spinner/Spinner';
 
 class App extends Component {
 
@@ -25,13 +26,19 @@ class App extends Component {
 
 
   render() {
+    if (this.state.userRepos.length > 0 || this.state.userData.length > 0) {
+      return (
+        <div >
+          <Layout onFormSubmit={this.handleFormSubmit.bind(this)}>
+            <Profile {...this.state} />
+          </Layout>
+        </div>
+      );
+    }
     return (
-      <div >
-        <Layout onFormSubmit={this.handleFormSubmit.bind(this)}>
-          <Profile {...this.state} />
-        </Layout>
-      </div>
-    );
+      <Spinner />
+
+    )
   }
 
 
@@ -40,6 +47,7 @@ class App extends Component {
     getProfiledata('https://api.github.com/users/' + this.state.username + '?client_id=' + this.props.clientId + '&client_secret=' + this.props.clientSecret).then(response => {
       this.setState({ userData: response.data });
     }).catch(response => {
+      console.log(response);
     });
   }
 
@@ -47,19 +55,28 @@ class App extends Component {
     getReposatoriesData(
       'https://api.github.com/users/' + this.state.username + '/repos?per_page=' + this.state.perPage + '&client_id=' + this.props.clientId + '&client_secret=' + this.props.clientSecret
       + '&sort=created').then(response => {
-        console.log("fetchRepoFromApi()", response.data);
+        // console.log("fetchRepoFromApi()", response.data);
         this.setState({ userRepos: response.data });
       }).catch(response => {
+        console.log(response);
       });
   }
 
 
   handleFormSubmit(username) {
     console.log(username);
-    this.setState({ username: username }, function () {
-      this.fetchProfileDataFromApi();
-      this.fetchRepoFromApi()
-    });
+
+    if (username !== this.state.username) {
+      this.setState({
+        username: username,
+        userData: [],
+        userRepos: []
+      }, function () {
+        this.fetchProfileDataFromApi();
+        this.fetchRepoFromApi()
+      });
+    }
+
   }
 
 }
