@@ -17,7 +17,7 @@ class Toolbar extends Component {
 
 
     render() {
-        // console.log("in Toolbar", this.props.username);
+        //console.log("in Toolbar", this.props.username);
         return (
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
                 <div className="container-fluid">

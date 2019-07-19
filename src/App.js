@@ -6,6 +6,7 @@ import { getProfiledata } from './helper/profileHelper';
 import { getReposatoriesData } from './helper/repoHelper';
 import Spinner from './component/Spinner/Spinner';
 
+let errorStatus = "";
 class App extends Component {
 
   constructor(props) {
@@ -14,7 +15,8 @@ class App extends Component {
       username: 'androidajeet',
       userData: [],
       userRepos: [],
-      perPage: 5
+      perPage: 5,
+      loading: false
     };
   }
 
@@ -26,39 +28,57 @@ class App extends Component {
 
 
   render() {
-    if (this.state.userRepos.length > 0 || this.state.userData.length > 0) {
+    if (this.state.loading) {
+      return <Spinner />;
+    } else {
       return (
         <div >
           <Layout onFormSubmit={this.handleFormSubmit.bind(this)}>
-            <Profile {...this.state} />
+            {(errorStatus === "")
+              ? <Profile {...this.state} />
+              : <p className="container" style={{ textAlign: "center", marginTop: "15%", fontSize: "26px" }}> {status}</p>
+            }
           </Layout>
         </div>
       );
     }
-    return (<Spinner />);
   }
 
 
 
-  fetchProfileDataFromApi() {
+
+
+  fetchProfileDataFromApi = () => {
+    this.setState({ loading: true });
     getProfiledata('https://api.github.com/users/' + this.state.username + '?client_id=' + this.props.clientId + '&client_secret=' + this.props.clientSecret).then(response => {
-      this.setState({ userData: response.data });
+      console.log(" fetchProfileDataFromApi()", response.data);
+      errorStatus = ""
+      this.setState({ userData: response.data, loading: false });
     }).catch(response => {
-      console.log(response);
+      errorStatus = response.message;
+      console.log(response.message);
+      this.setState({
+        loading: false
+      });
     });
   }
 
-  fetchRepoFromApi() {
+  fetchRepoFromApi = () => {
+    this.setState({ loading: true });
     getReposatoriesData(
       'https://api.github.com/users/' + this.state.username + '/repos?per_page=' + this.state.perPage + '&client_id=' + this.props.clientId + '&client_secret=' + this.props.clientSecret
       + '&sort=created').then(response => {
-        // console.log("fetchRepoFromApi()", response.data);
-        this.setState({ userRepos: response.data });
+        console.log("fetchRepoFromApi()", response.data);
+        errorStatus = ""
+        this.setState({ userRepos: response.data, loading: false });
       }).catch(response => {
-        console.log(response);
+        errorStatus = response.message;
+        console.log(response.message);
+        this.setState({
+          loading: false
+        });
       });
   }
-
 
   handleFormSubmit(username) {
     console.log(username);
@@ -69,11 +89,18 @@ class App extends Component {
         userRepos: []
       }, function () {
         this.fetchProfileDataFromApi();
-        this.fetchRepoFromApi()
+        this.fetchRepoFromApi();
       });
     }
   }
+
 }
+
+
+
+
+
+
 
 App.propTypes = {
   clientId: PropTypes.string,
