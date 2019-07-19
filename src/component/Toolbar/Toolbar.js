@@ -19,17 +19,14 @@ class Toolbar extends Component {
     render() {
         // console.log("in Toolbar", this.props.username);
         return (
-
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
-
                 <div className="container-fluid">
                     <div className="col-xs-4">
                         <a className="navbar-brand" href="#">GitHub Profile Viewer </a>
                     </div>
-
                     <div className="col-xs-8">
                         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                            <span className="navbar-toggler-icon"></span>
+                            <span className="col-xs-8 navbar-toggler-icon"></span>
                         </button>
                         <div className="collapse navbar-collapse" id="navbarNav">
                             <ul className="navbar-nav">
@@ -42,7 +39,6 @@ class Toolbar extends Component {
                                 <li className="nav-item">
                                     <a className="nav-link" href="#">About</a>
                                 </li>
-
                                 <li className="nav-item">
                                     <form onSubmit={this.onSubmit.bind(this)} >
                                         <input type="text" ref="username" className="form-control mr-md-4" placeholder="Search Github username" aria-label="Search" />
@@ -51,10 +47,8 @@ class Toolbar extends Component {
                             </ul>
                         </div>
                     </div>
-
                 </div>
             </nav>
-
         );
     }
 }
