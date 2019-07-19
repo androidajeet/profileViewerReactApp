@@ -6,7 +6,7 @@ import { getProfiledata } from './helper/profileHelper';
 import { getReposatoriesData } from './helper/repoHelper';
 import Spinner from './component/Spinner/Spinner';
 
-let errorStatus = "";
+let status = "";
 class App extends Component {
 
   constructor(props) {
@@ -34,7 +34,7 @@ class App extends Component {
       return (
         <div >
           <Layout onFormSubmit={this.handleFormSubmit.bind(this)}>
-            {(errorStatus === "")
+            {(status === "")
               ? <Profile {...this.state} />
               : <p className="container" style={{ textAlign: "center", marginTop: "15%", fontSize: "26px" }}> {status}</p>
             }
@@ -52,10 +52,10 @@ class App extends Component {
     this.setState({ loading: true });
     getProfiledata('https://api.github.com/users/' + this.state.username + '?client_id=' + this.props.clientId + '&client_secret=' + this.props.clientSecret).then(response => {
       console.log(" fetchProfileDataFromApi()", response.data);
-      errorStatus = ""
+      status = ""
       this.setState({ userData: response.data, loading: false });
     }).catch(response => {
-      errorStatus = response.message;
+      status = response.message;
       console.log(response.message);
       this.setState({
         loading: false
@@ -69,10 +69,10 @@ class App extends Component {
       'https://api.github.com/users/' + this.state.username + '/repos?per_page=' + this.state.perPage + '&client_id=' + this.props.clientId + '&client_secret=' + this.props.clientSecret
       + '&sort=created').then(response => {
         console.log("fetchRepoFromApi()", response.data);
-        errorStatus = ""
+        status = ""
         this.setState({ userRepos: response.data, loading: false });
       }).catch(response => {
-        errorStatus = response.message;
+        status = response.message;
         console.log(response.message);
         this.setState({
           loading: false
