@@ -35,10 +35,7 @@ class App extends Component {
         </div>
       );
     }
-    return (
-      <Spinner />
-
-    )
+    return (<Spinner />);
   }
 
 
@@ -65,7 +62,6 @@ class App extends Component {
 
   handleFormSubmit(username) {
     console.log(username);
-
     if (username !== this.state.username) {
       this.setState({
         username: username,
@@ -76,9 +72,7 @@ class App extends Component {
         this.fetchRepoFromApi()
       });
     }
-
   }
-
 }
 
 App.propTypes = {
@@ -88,7 +82,7 @@ App.propTypes = {
 App.defaultProps = {
   clientId: 'Iv1.bebca7b8c9836838',
   clientSecret: '033eb6cad534a1c333e69441b68dc6c28dcd01ab'
-}
+};
 
 
 export default App;

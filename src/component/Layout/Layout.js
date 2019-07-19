@@ -11,7 +11,7 @@ class Layout extends Component {
 
 
     render() {
-        //  console.log("in Layout", this.props.onFormSubmit);
+        //console.log("in Layout", this.props.onFormSubmit);
         return (
             <Aux>
                 <Toolbar {...this.props} />

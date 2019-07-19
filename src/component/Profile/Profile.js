@@ -39,7 +39,7 @@ class Profile extends Component {
                         </div>
                     </div>
                 </div>
-                <h3 className="text-center">User Reposatories</h3>
+                <h3 className="text-center">Recent User Reposatories (Last 5)</h3>
                 <RepoList userRepos={this.props.userRepos}> </RepoList>
             </div>
         );
