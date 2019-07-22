@@ -8,7 +8,6 @@ import Spinner from './component/Spinner/Spinner';
 
 let status = "";
 class App extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -26,7 +25,6 @@ class App extends Component {
     this.fetchRepoFromApi()
   }
 
-
   render() {
     if (this.state.loading) {
       return <Spinner />;
@@ -43,9 +41,6 @@ class App extends Component {
       );
     }
   }
-
-
-
 
 
   fetchProfileDataFromApi = () => {
@@ -96,12 +91,6 @@ class App extends Component {
 
 }
 
-
-
-
-
-
-
 App.propTypes = {
   clientId: PropTypes.string,
   clientSecret: PropTypes.string
@@ -117,6 +106,7 @@ export default App;
 //brije111
 //androidajeet
 //deeksha080502
+///ayush099
 
 
 

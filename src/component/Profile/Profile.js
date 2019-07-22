@@ -3,8 +3,6 @@ import RepoList from '../RepoList/RepoList';
 
 
 class Profile extends Component {
-
-
     render() {
         return (
             <div className="card mb-12" >
@@ -44,9 +42,7 @@ class Profile extends Component {
             </div>
         );
     }
-
 }
-
 export default Profile
 
 //<Search />
