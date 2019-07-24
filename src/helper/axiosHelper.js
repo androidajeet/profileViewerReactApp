@@ -5,6 +5,7 @@ export const getApiData = (url) => {
         timeout: 3000
 
     });
+
     const instance = instanceAxios.get(url)
     return instance;
 }
